@@ -8,8 +8,7 @@
 main:   ori $t0,$0,0
 while:  ori $v0,READ_CORE_TIMER
         syscall
-        bge $v0,200000,endw
-        j while
+        blt $v0,200000,while
 endw:   ori $v0,$0,RESET_CORE_TIMER
         syscall
         li $a0,32
