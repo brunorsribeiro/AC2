@@ -9,7 +9,8 @@ main:   ori $t0,$0,0
 while:  ori $v0,READ_CORE_TIMER
 #        syscall
         bge $v0,200000,endw
-        ori $v0,$0,RESET_CORE_TIMER
+        j while
+endw:   ori $v0,$0,RESET_CORE_TIMER
         syscall
         li $a0,32
         ori $v0,$0,PUT_CHAR
@@ -19,5 +20,4 @@ while:  ori $v0,READ_CORE_TIMER
         ori $a1,$0,10
         ori $v0,$0,PRINT_INT
         syscall
-        j while
-endw:   jr $ra
+        jr $ra
