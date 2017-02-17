@@ -69,7 +69,7 @@ endlf:  jr $ra
 
 strcpy: or $v0,$a0,$0
 cpyfor: lb $t0,0($a1)
-        sw $t0,0($a0)
+        sb $t0,0($a0)
         beqz $t0,ecpyf
         addi $a0,$a0,1
         addi $a1,$a1,1
