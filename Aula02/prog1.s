@@ -19,5 +19,5 @@ endw:   ori $v0,$0,RESET_CORE_TIMER
         ori $a1,$0,10
         ori $v0,$0,PRINT_INT
         syscall
-        j main
+        j while
         jr $ra
