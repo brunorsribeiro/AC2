@@ -19,12 +19,13 @@ main:	addiu $sp,$sp,-16
 	andi $s2,$s2,0xFFFE
 	sw $s2,TRISE($s1)
 	#while 1
-while:	or $s2,$s0,$0
+while:	lw $s2,LATE($s1)
+	or $s2,$s0,$0
  	sw $s2,LATE($s1)
-	# Uncoment to set delay
+	# Uncoment ONE to set delay
 #	li $a0,500
 #	li $a0,20
-#	li $a0,10
+	li $a0,10
 	jal delay
 	xori $s0,$s0,1
 	j while
