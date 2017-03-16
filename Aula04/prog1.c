@@ -1,5 +1,5 @@
 #include <detpic32.h>
-#include "delay.c"
+#include "aux.c"
 
 void delay(int);
 

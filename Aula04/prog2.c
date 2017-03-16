@@ -1,5 +1,5 @@
 #include <detpic32.h>
-#include "delay.c"
+#include "aux .c"
 
 int main(void){
 	char count = 0;

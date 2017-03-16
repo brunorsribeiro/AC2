@@ -1,5 +1,5 @@
 #include <detpic32.h>
-#include "delay.c"
+#include "aux.c"
 
 int main(void){
 	unsigned char segment;
@@ -16,7 +16,7 @@ int main(void){
 		for(i = 0; i < 7; i++){
 			LATB = (LATB | segment);
 			LATB = LATB << 8;
-			delay(10);
+			delay(1000);
 			segment = segment << 1;
 		}
 	}
