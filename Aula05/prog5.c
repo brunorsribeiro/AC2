@@ -23,7 +23,7 @@ int main(void){
 		LATBbits.LATB6 = 0;
 		aux = (int*)(&ADC1BUF0);
 		for(; aux <= (int*)(&ADC1BUFF); aux +=4){
-			val += *aux;
+			val += (*aux & 0x03FF);
 		}
 		val /= 4;
 		val=((val*33)+511)/1023;
