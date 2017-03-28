@@ -1,6 +1,3 @@
-#include <detpic32.h>
-#include "aux.c"
-
 // fout = 100Hz
 // duty-cycle = 0.25
 // prescale = 20000000/(65536*fout) = 4
@@ -8,6 +5,9 @@
 // PR3 = (fout_prescale/fout) - 1 = 49999
 // OC1RS = (PR3+1)*duty-cycle = 12500
 // Res = log(PR2+1)
+
+#include <detpic32.h>
+#include "../../aux.c"
 
 int main(void){
 	T3CONbits.TCKPS = 2;

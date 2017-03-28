@@ -9,7 +9,7 @@
 // fout_prescale = 20000000/prescale = 5000000
 // PR3 = (fout_prescale/fout) - 1 = 49999
 #include <detpic32.h>
-#include "aux.c"
+#include "../../aux.c"
 
 static int *aux;
 static int val;

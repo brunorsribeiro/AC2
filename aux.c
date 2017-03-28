@@ -43,6 +43,7 @@ void sendToDisplay(unsigned char value){
 		LATDbits.LATD6 = 1;
 		LATB = LATB | msb;
 		LATB = LATB << 8;
+		LATBbits.LATB15 = 1; 
 		// if(value % 2 != 0) LATBbits.LATB15 = 1;
 	}else{
 		LATDbits.LATD5 = 1;

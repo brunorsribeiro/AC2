@@ -16,10 +16,9 @@
 // PR3 = (fout_prescale/fout) - 1 = 49999
 // OC1RS = (PR3+1)*duty-cycle = 12500
 #include <detpic32.h>
-#include "aux.c"
+#include "../../aux.c"
 
-static int *aux;
-volatile int val;
+unsigned volatile int val;
 
 int main(void){
 	// Timer 1
@@ -82,11 +81,11 @@ void _int_(12) isr_T3(void){
 }
 
 void _int_(27) isr_adc(void){
-	aux = (int*)(&ADC1BUF0);
-	for(; aux <= (int*)(&ADC1BUFF); aux +=4){
+	unsigned int *aux = &ADC1BUF0;
+	for(; aux <= &ADC1BUFF; aux +=4){
 		val += *aux;
 	}
 	val /= 8;
-	val=((val*33)+511)/1023;
+	val=((val*33))/1023;
 	IFS1bits.AD1IF = 0;
 }

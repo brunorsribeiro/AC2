@@ -1,5 +1,5 @@
 #include <detpic32.h>
-#include "aux.c"
+#include "../aux.c"
 
 
 
