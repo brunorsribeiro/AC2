@@ -26,13 +26,14 @@ endf:   lw $ra,0($sp)
 
 delay:  addiu $sp,$sp,-4
         sw $ra,0($sp)
-        mul $t0,$a0,20000
 dfor:   blez $a0,enddf
         li $v0,RESET_CORE_TIMER
         syscall
 dwhile: li $v0,READ_CORE_TIMER
         syscall
-        blt $v0,$t0,dwhile
+        blt $v0,20000,dwhile
+		addiu $a0,$a0,-1
+		j dfor
 enddf:  lw $ra,0($sp)
         addiu $sp,$sp,4
         jr $ra
