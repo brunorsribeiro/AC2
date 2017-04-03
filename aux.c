@@ -43,7 +43,7 @@ void sendToDisplay(unsigned char value){
 		LATDbits.LATD6 = 1;
 		LATB = LATB | msb;
 		LATB = LATB << 8;
-		LATBbits.LATB15 = 1; 
+		LATBbits.LATB15 = 1;
 		// if(value % 2 != 0) LATBbits.LATB15 = 1;
 	}else{
 		LATDbits.LATD5 = 1;
@@ -57,18 +57,6 @@ void sendToDisplay(unsigned char value){
 
 unsigned char toBcd(unsigned char value){
 	return ((value/10) << 4) + (value%10);
-}
-
-void blink(int onTime, int timer){
-    int i = 0;
-	do {
-		LATDbits.LATD5 = 0;
-		LATDbits.LATD6 = 0;
-		delay(onTime);
-		LATDbits.LATD5 = 1;
-		LATDbits.LATD6 = 1;
-	} while(++ i < (onTime*2)*timer);
-
 }
 
 void setPWM(unsigned int dutyCycle){
