@@ -3,7 +3,7 @@
 // fout_prescale = 20000000/256 = 78125
 // PR3 = (fout_prescale/fout) - 1 = 39061
 #include <detpic32.h>
-#include "aux.c"
+#include "../../aux.c"
 
 int main(void){
 	T3CONbits.TCKPS = 7;

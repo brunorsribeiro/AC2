@@ -1,7 +1,7 @@
 // fout = 1Hz
 // prescale = ceil(20000000/(65536*fout)) = 305 Not Possible
 #include <detpic32.h>
-#include "aux.c"
+#include "../../aux.c"
 
 
 static char i = 0;
