@@ -122,6 +122,7 @@ int main(void){
 	comDrv_flushRx();
 	EnableInterrupts();
 	char c;
+	comDrv_puts("PIC32 UART Device driver");
 	while(1){
 		comDrv_getc(&c);
 		comDrv_putc(c);

@@ -3,6 +3,7 @@ void delay(int);
 void sendToDisplay(unsigned const char);
 unsigned char toBcd(unsigned char);
 void blink(int, int);
+void configUART(int,char,int,int);
 
 void configDisplay(void){
 	LATDbits.LATD5 = 0;
@@ -62,5 +63,44 @@ unsigned char toBcd(unsigned char value){
 void setPWM(unsigned int dutyCycle){
 	if(dutyCycle < 0 || dutyCycle > 100) return;
 	OC1RS = (50000 * dutyCycle)/100;
-	printInt10(OC1RS);
+}
+
+void configUART(int br, char parity, int stop,int Interrupt){
+	if(Interrupt){
+		IEC0bits.U1RXIE = 1;
+		IEC0bits.U1TXIE = 0;
+		IEC0bits.U1EIE = 0;
+		IPC6bits.U1IP = 2;
+		IFS0bits.U1RXIF = 0;
+		U1STAbits.URXISEL = 0;
+		U1STAbits.UTXSEL = 0;
+	}
+	U1MODEbits.BRGH = 0;
+	if(br >= 600 && br < 115200){
+		U1BRG = (20000000/(16*br))-1;
+	}else{
+		U1BRG = 10;
+	}
+	switch (parity) {
+		case 'e':case'E':
+		U1MODEbits.PDSEL = 1;
+		break;
+		case 'o':case'O':
+		U1MODEbits.PDSEL = 2;
+		break;
+		default:
+		U1MODEbits.PDSEL = 0;
+		break;
+	}
+	switch (stop) {
+		case 2:
+		U1MODEbits.STSEL = 1;
+		break;
+		default:
+		U1MODEbits.STSEL = 0;
+		break;
+	}
+	U1STAbits.URXEN = 1;
+	U1STAbits.UTXEN = 1;
+	U1MODEbits.ON = 1;
 }
